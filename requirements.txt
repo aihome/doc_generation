@@ -1,6 +1,5 @@
 docxtpl
 streamlit
-base64
 docx2pdf
 PIL==8.4.0 
 pythoncom
