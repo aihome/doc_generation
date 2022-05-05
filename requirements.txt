@@ -1,4 +1,5 @@
 docxtpl
 streamlit
 docx2pdf==0.1.8
+pythoncom==0.0.1
 Pillow==9.1.0
