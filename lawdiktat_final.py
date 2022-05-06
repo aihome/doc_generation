@@ -4,7 +4,7 @@ import base64
 # import docx2txt as dt
 from docx2pdf import convert
 from PIL import Image
-# import pythoncom
+import pythoncom
 # import time
 import os
 
@@ -764,7 +764,7 @@ agreement_type = st.sidebar.selectbox(
     "SELECT THE AGREEMENT", agreements)
 agreement = agreement_type.replace(" ", "")
 
-# pythoncom.CoInitialize()
-# eval(agreement + "(path1, path2)")
-# pythoncom.CoInitialize()
+pythoncom.CoInitialize()
+eval(agreement + "(path1, path2)")
+pythoncom.CoInitialize()
 
