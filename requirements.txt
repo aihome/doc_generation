@@ -2,4 +2,3 @@ streamlit
 docxtpl>=0.16.0 
 docx2pdf>=0.1.8
 PIL==8.4.0 
-pythoncom
