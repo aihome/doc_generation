@@ -35,10 +35,11 @@ def displayPDF(file):
 
     # Embedding PDF in HTML
     pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="900" height="1000" type="application/pdf"></iframe>'
+    
 
    # Displaying File
-    st.markdown(pdf_display, unsafe_allow_html=True)
-
+#     st.markdown(pdf_display, unsafe_allow_html=True)
+    st.markdown(pdf_display)
 
 def triggerfunction(file, file_name):
     convert_to_pdf(file, path2+'/')
