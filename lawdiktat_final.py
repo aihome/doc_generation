@@ -34,7 +34,7 @@ def displayPDF(file):
     with open(file, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     components.html(
-        <iframe src="file:application/pdf;base64,{base64_pdf}" width=900 height=1000 type="application/pdf"></iframe>
+        <iframe src="{base64_pdf}" width=900 height=1000 type="application/pdf"></iframe>
     )
 #     components.iframe(src=file ,width=900, height=1000,scrolling=True)
 
