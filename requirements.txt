@@ -1,3 +1,4 @@
 streamlit
+mammoth==1.4.19
 docxtpl>=0.16.0 
 Pillow
