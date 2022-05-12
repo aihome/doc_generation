@@ -38,8 +38,8 @@ def displayPDF(file):
     
 
    # Displaying File
-#     st.markdown(pdf_display, unsafe_allow_html=True)
-    st.markdown(pdf_display)
+    st.markdown(pdf_display, unsafe_allow_html=True)
+#     st.markdown(pdf_display)
 
 def triggerfunction(file, file_name):
     convert_to_pdf(file, path2+'/')
