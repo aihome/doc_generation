@@ -8,7 +8,7 @@ import subprocess
 from subprocess import Popen
 st.set_page_config(layout="wide")
 
-subprocess.call(['apt', 'install', 'libreoffice', '--no-install-recommends'])
+# subprocess.call(['apt', 'install', 'libreoffice', '--no-install-recommends'])
 # LIBRE_OFFICE =
 path = os.getcwd()
 path1 = path + "/documents"
