@@ -2,15 +2,13 @@ import streamlit as st
 from docxtpl import DocxTemplate
 import base64
 from PIL import Image
-# import pythoncom
 import os
-import subprocess
-import streamlit.components.v1 as components
 from subprocess import Popen
+from pathlib import Path
+import mammoth
+
 st.set_page_config(layout="wide")
 
-# subprocess.call(['apt', 'install', 'libreoffice', '--no-install-recommends'])
-# LIBRE_OFFICE =
 path = os.getcwd()
 path1 = path + "/documents"
 path2 = path + "/generated documents"
@@ -19,37 +17,27 @@ path2 = path + "/generated documents"
 image = Image.open(path+'/law diktat.png')
 st.sidebar.image(image, width=280)
 
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
+
+def convert_to_mod(input_docx, output_mod):
+    with open(input_docx, "rb") as docx_file:
+        result = mammoth.convert_to_markdown(docx_file,include_default_style_map=True)
+    with open(output_mod, "w") as markdown_file:
+        markdown_file.write(result.value)
 
 def convert_to_pdf(input_docx, out_folder):
 
-    # libreoffice --headless --convert-to pdf MyWordFile.docx --outdir ./
     p = Popen(['libreoffice', '--headless', '--convert-to', 'pdf', '--outdir',
-               out_folder, input_docx])
-    # print([, '--convert-to', 'pdf', input_docx])
+                out_folder, input_docx])
     p.communicate()
 
 
 def displayPDF(file):
-    #Opening file from file path
-    with open(file, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-#     components.html(
-#         f"""
-# 	  <iframe src="data:application/pdf;base64,{base64_pdf}" width=900 height=1000 type="application/pdf"></iframe>
-# 	""",
-#         height = 900,
-#         width = 1000,
-#         scrolling=True
-#     )
-# #     components.iframe(src=file ,width=900, height=1000,scrolling=True)
-
-    # Embedding PDF in HTML
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="900" height="1000" type="application/pdf"></iframe>'
-    
-    
-   # Displaying File
-    st.markdown(pdf_display, unsafe_allow_html=True)
-    st.markdown(pdf_display)
+    intro_markdown = read_markdown_file(file)
+    preview = st.container()
+    with preview:
+        st.markdown(intro_markdown, unsafe_allow_html=True)
 
 def triggerfunction(file, file_name):
     convert_to_pdf(file, path2+'/')
@@ -146,9 +134,11 @@ def DistributorSupplierAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Supplier Distributor GeneratedR.docx")
     doc1.save(path2+"/Supplier Distributor Generated.docx")
-    convert_to_pdf(path2+"/Supplier Distributor GeneratedR.docx", path2+'/')
+    convert_to_mod(path2+"/Supplier Distributor GeneratedR.docx", path2+"/Supplier Distributor GeneratedR.md")
+    
+    
     # 
-    f1 = path2+'/Supplier Distributor GeneratedR.pdf'
+    f1 = path2+'/Supplier Distributor GeneratedR.md'
     if st.button('Done editing'):
         triggerfunction(path2+"/Supplier Distributor Generated.docx","Supplier Distributor Generated.pdf")
 
@@ -208,10 +198,10 @@ def RentalAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Rental Agreement GeneratedR.docx")
     doc1.save(path2+"/Rental Agreement Generated.docx")
-    convert_to_pdf(path2+"/Rental Agreement GeneratedR.docx", path2+'/')
+    convert_to_mod(path2+"/Rental Agreement GeneratedR.docx", path2+"/Rental Agreement GeneratedR.md")
     
     #convert("C:/Users/roysm/Documents/Alpha AI/Law Updated/generated documents/Supplier Distributor Generated.docx","C:/Users/roysm/Documents/Alpha AI/Law Updated/generated documents/Supplier Distributor Generated.pdf")
-    f1 = path2+'/Rental Agreement GeneratedR.pdf'
+    f1 = path2+"/Rental Agreement GeneratedR.md"
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Rental Agreement Generated.docx","Rental Agreement Generated.pdf")
@@ -273,8 +263,8 @@ def NonDisclosureAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/NDA GeneratedR.docx")
     doc1.save(path2+"/NDA Generated.docx")
-    convert_to_pdf(path2+"/NDA GeneratedR.docx", path2+'/')
-    f1 = path2+'/NDA GeneratedR.pdf'
+    convert_to_mod(path2+"/NDA GeneratedR.docx", path2+"/NDA GeneratedR.md")
+    f1 = path2+'/NDA GeneratedR.md'
     if st.button('Done editing'):
         triggerfunction(path2+"/NDA Generated.docx","NDA Generated.pdf")
     displayPDF(f1)
@@ -314,8 +304,8 @@ def IndependentContractorAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Independent Contractor Agreement GeneratedR.docx")
     doc1.save(path2+"/Independent Contractor Agreement Generated.docx")
-    convert_to_pdf(path2+"/Independent Contractor Agreement GeneratedR.docx", path2+'/')
-    f1 = path2+'/Independent Contractor Agreement GeneratedR.pdf'
+    convert_to_mod(path2+"/Independent Contractor Agreement GeneratedR.docx", path2+"/Independent Contractor Agreement GeneratedR.md")
+    f1 =path2+"/Independent Contractor Agreement GeneratedR.md"
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Independent Contractor Agreement Generated.docx","Independent Contractor Agreement Generated.pdf")
@@ -374,8 +364,8 @@ def EmploymentContract(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Employment Contract GeneratedR.docx")
     doc1.save(path2+"/Employment Contract Generated.docx")
-    convert_to_pdf(path2+"/Employment Contract GeneratedR.docx", path2+'/')
-    f1 = path2+'/Employment Contract GeneratedR.pdf'
+    convert_to_mod(path2+"/Employment Contract GeneratedR.docx", path2+"/Employment Contract GeneratedR.md")
+    f1 = path2+"/Employment Contract GeneratedR.md"
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Employment Contract Generated.docx","Employment Contract Generated.pdf" )
@@ -432,8 +422,8 @@ def FoundersAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Founders Agreement GeneratedR.docx")
     doc1.save(path2+"/Founders Agreement Generated.docx")
-    convert_to_pdf(path2+"/Founders Agreement GeneratedR.docx", path2+'/')
-    f1 = path2+'/Founders Agreement GeneratedR.pdf'
+    convert_to_mod(path2+"/Founders Agreement GeneratedR.docx", path2+"/Founders Agreement GeneratedR.md")
+    f1 = path2+'/Founders Agreement GeneratedR.md'
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Founders Agreement Generated.docx","Founders Agreement Generated.pdf")
@@ -488,8 +478,8 @@ def AgencyAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Agency Agreement GeneratedR.docx")
     doc1.save(path2+"/Agency Agreement Generated.docx")
-    convert_to_pdf(path2+"/Agency Agreement GeneratedR.docx", path2+'/')
-    f1 = path2+"/Agency Agreement GeneratedR.pdf"
+    convert_to_mod(path2+"/Agency Agreement GeneratedR.docx", path2+"/Agency Agreement GeneratedR.md")
+    f1 = path2+"/Agency Agreement GeneratedR.md"
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Agency Agreement Generated.docx","Agency Agreement Generated.pdf")
@@ -535,8 +525,8 @@ def PromissoryNote(path1, path2):
     doc1.render(context)
     doc.save(path2+"/PromissoryNote_generatedR.docx")
     doc1.save(path2+"/PromissoryNote_generated.docx")
-    convert_to_pdf(path2+"/PromissoryNote_generatedR.docx", path2+'/')
-    f1 = path2+'/PromissoryNote_generatedR.pdf'
+    convert_to_mod(path2+"/PromissoryNote_generatedR.docx", path2+"/PromissoryNote_generatedR.md")
+    f1 = path2+'/PromissoryNote_generatedR.md'
 
     if st.button('Done editing'):
         triggerfunction(path2+"/PromissoryNote_generated.docx","PromissoryNote_generated.pdf")
@@ -598,8 +588,8 @@ def PropertySaleAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Property sale agreement generatedR.docx")
     doc1.save(path2+"/Property sale agreement generated.docx")
-    convert_to_pdf(path2+"/Property sale agreement generatedR.docx", path2+'/')
-    f1 = path2+'/Property sale agreement generatedR.pdf'
+    convert_to_mod(path2+"/Property sale agreement generatedR.docx", path2+"/Property sale agreement generatedR.md")
+    f1 = path2+'/Property sale agreement generatedR.md'
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Property sale agreement generated.docx","Property sale agreement generatedR.pdf")
@@ -681,8 +671,8 @@ def GeneralServiceAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/General Service agreement generatedR.docx")
     doc1.save(path2+"/General Service agreement generated.docx")
-    convert_to_pdf(path2+"/General Service agreement generatedR.docx", path2+'/')
-    f1 = path2+'/General Service agreement generatedR.pdf'
+    convert_to_mod(path2+"/General Service agreement generatedR.docx", path2+"/General Service agreement generatedR.md")
+    f1 = path2+'/General Service agreement generatedR.md'
 
     if st.button('Done editing'):
         triggerfunction(path2+"/General Service agreement generated.docx","General Service agreement generated.pdf")
@@ -748,8 +738,8 @@ def SaleofGoodsAgreement(path1, path2):
     doc1.render(context)
     doc.save(path2+"/Sale of Goods generated AgreementR.docx")
     doc1.save(path2+"/Sale of Goods generated Agreement.docx")
-    convert_to_pdf(path2+"/Sale of Goods generated AgreementR.docx", path2+'/')
-    f1 = path2+'/Sale of Goods generated AgreementR.pdf'
+    convert_to_mod(path2+"/Sale of Goods generated AgreementR.docx", path2+"/Sale of Goods generated AgreementR.md")
+    f1 = path2+"/Sale of Goods generated AgreementR.md"
 
     if st.button('Done editing'):
         triggerfunction(path2+"/Sale of Goods generated Agreement.docx","Sale of Goods generated Agreement.pdf")
