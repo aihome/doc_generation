@@ -789,7 +789,7 @@ def Home(path1, path2):
             '<p class="font">2. You must read the agreement and fill it in accordingly.</p>', unsafe_allow_html=True)
         st.markdown('<p class="font">3. Details entered in the text boxes will be populated in the agreement preview right after pressing the "Enter" or "Tab" key.</p>', unsafe_allow_html=True)
         st.markdown(
-            '<p class="font">4. Entered text will appear in red-colored texts in the preview box on your right.</p>', unsafe_allow_html=True)
+            '<p class="font">4. Entered text will appear in between ( ) in the preview box on your right.</p>', unsafe_allow_html=True)
         st.markdown(
             '<p class="font">5. The input fields are Case-Sensetive.</p>', unsafe_allow_html=True)
         st.markdown(
