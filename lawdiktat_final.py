@@ -283,7 +283,7 @@ def IndependentContractorAgreement(path1, path2):
     doc = DocxTemplate(path1+"/Independent Contractor AgreementR.docx")
     doc1 = DocxTemplate(path1+"/Independent Contractor Agreement.docx")
 
-     context = {"date": st.sidebar.date_input("Agreement Date:"),
+    context = {"date": st.sidebar.date_input("Agreement Date:"),
                "Name_of_the_company": st.sidebar.text_input("Company Name", value="Company Name"),
                "c_state_or_province": st.sidebar.text_input("Company State/Province", value="Company State/Province"),
                "c_full_address_of_company": st.sidebar.text_input("Company Address", value="Company Address"),
