@@ -92,6 +92,8 @@ def DistributorSupplierAgreement(path1, path2):
                "From_date": st.sidebar.date_input("Effective from date"),
 
                "To_Date": st.sidebar.date_input("Effective till date"),
+               
+               "Duration": st.sidebar.text_input("Duration (in numbers)", value="Duration"),
 
                "Cost_or_unit": st.sidebar.text_input("Supplied at Cost per unit", value="Supplied at Cost per unit"),
 
