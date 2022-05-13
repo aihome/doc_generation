@@ -71,6 +71,7 @@ def DistributorSupplierAgreement(path1, path2):
 
                "S_Sole_Proprietor_or_Partner_or_Duly_Authorized_Member_Of_Staff_or_NA": st.sidebar.selectbox("Supplier Represented By",
                                                                                                              ("Sole Proprietor", "Partner", "Duly Authorized Member of Staff", "NA")),
+               "S_Mr_or_Ms": st.sidebar.selectbox("Supplier Title",("Mr.", "Ms.")),
 
                "Supplier_Representative": st.sidebar.text_input("Supplier Representative Name", value="Supplier Representative Name"),
 
@@ -80,6 +81,7 @@ def DistributorSupplierAgreement(path1, path2):
 
                "D_Sole_Proprietor_or_Partner_or_Duly_Authorized_Member_Of_Staff_or_NA": st.sidebar.selectbox("Distributor Represented By:",
                                                                                                              ("Sole Proprietor", "Partner", "Duly Authorized Member of Staff", "NA")),
+                "D_Mr_or_Ms": st.sidebar.selectbox("Supplier Title",("Mr.", "Ms."), key=3),
 
                "Distributor_Representative": st.sidebar.text_input("Name of the Distributor Representative", value="Distributor Representative Name"),
 
