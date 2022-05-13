@@ -634,15 +634,16 @@ def GeneralServiceAgreement(path1, path2):
                "To_Date": st.sidebar.date_input("Effective till date"),
                "Duration": st.sidebar.text_input("Duration", value="Duration"),
 
-               "Service_1": st.sidebar.text_input("Services provided by Contractor to Client", value="Services provided by Contractor to Client"),
-               "Add_any_Additional_Services": st.sidebar.text_input("Add if there are any additional services else leave it empty"),
+               "Service_1": st.sidebar.text_input("Services provided by Contractor to Client", value="Services provided by Contractor to Client"),               
+               "Add_any_Additional_Services": st.sidebar.text_input("Add if there are any additional services else leave it empty", value="Add if there are any additional services else leave it empty"),
                "A_flat_fee_or_In_installments_or_Other_Consideration": st.sidebar.selectbox("Payment Method", ("Down/Flat Payment", "Installments", "Other Considerations")),
                "AmountF": st.sidebar.text_input("In case of Flat Fee: (Enter Amount)", value="Flat Fee Amount"),
                "Amount_of_Installments": st.sidebar.text_input("Incase of Installments: (Enter Amount)", value="Installments Amount"),
                "AmountI": st.sidebar.text_input("First Installment Amount: ", value="Enter Amount"),
                "AmountS": st.sidebar.text_input("Second Installment Amount: ", value="Enter Amount"),
-               "Additional_Installments": st.sidebar.text_input("Additional Installmetns(if any) or leave it empty: "),
-               "Consideration": st.sidebar.text_input("Consideration: "),
+               
+               "Additional_Installments": st.sidebar.text_input("Additional Installmetns(if any) or leave it empty:", value = "Additional Installments"),
+               "Consideration": st.sidebar.text_input("Consideration:", value="Consideration"),
                "Before_or_After_or_During_or_In_Installments": st.sidebar.selectbox("sevice by contractor must be given: ", ("Before", "After", "During / In Installments")),
                "method_of_payment": st.sidebar.selectbox("Method of Payment: ", ("Debit Card", "Credit Card", "Cash")),
 
@@ -653,9 +654,9 @@ def GeneralServiceAgreement(path1, path2):
                "Name_of_State_or_District": st.sidebar.text_input("State/District", value="State/District"),
                "Number": st.sidebar.text_input("Duration N days: ", value="Duration (in numbers)"),
                "Court_of_Law_or_Arbitral_tribunal": st.sidebar.selectbox("May seek compensation in appropriate: ", ("Court of Law", "Arbitral Tribunal")),
-               "Additional Clauses": st.sidebar.text_input("Add Additional Clause if any / Leave it empty"),
+               "Additional_Clauses": st.sidebar.text_input("Add Additional Clause if any / Leave it empty", value="Add Additional Clause"),
 
-               "dd_mm_yy_1": st.sidebar.date_input("Date of sigining the agreement"),
+               "dd_mm_yy1": st.sidebar.date_input("Date of sigining the agreement"),
 
 
                "Client": st.sidebar.text_input("", value="Client Name", placeholder="Client Name"),
@@ -667,7 +668,7 @@ def GeneralServiceAgreement(path1, path2):
                "Contractor_Representative_Name": st.sidebar.text_input("Contractor Representative Name", value="Contractor Representative Name"),
                "Contractor_Representative_Position": st.sidebar.text_input("Contractor Representative Position", value="Contractor Representative Position"),
                "Contractor_Representative_Signature": st.sidebar.text_input("Contractor Representative Signature", value="Contractor Representative Signature"),
-               "Witness_1_Name": st.sidebar.text_input("Witness Name", value="Witness Name"),
+               "Witness_1_Name": st.sidebar.text_input("Witness Name 1", value="Witness Name 1"),
 
 
                "Witness_2_Name": st.sidebar.text_input("Witness Name 2:", value="Witness Name 2 or NA")
