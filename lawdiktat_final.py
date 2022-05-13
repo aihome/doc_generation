@@ -283,18 +283,20 @@ def IndependentContractorAgreement(path1, path2):
     doc = DocxTemplate(path1+"/Independent Contractor AgreementR.docx")
     doc1 = DocxTemplate(path1+"/Independent Contractor Agreement.docx")
 
-    context = {"date": st.sidebar.date_input("Agreement Date:"),
+     context = {"date": st.sidebar.date_input("Agreement Date:"),
                "Name_of_the_company": st.sidebar.text_input("Company Name", value="Company Name"),
                "c_state_or_province": st.sidebar.text_input("Company State/Province", value="Company State/Province"),
                "c_full_address_of_company": st.sidebar.text_input("Company Address", value="Company Address"),
 
                "Name_of_owner": st.sidebar.text_input("Owner Name", value="Owner Name"),
                "full_address_of_owner": st.sidebar.text_input("Owner Address", value="Owner Address"),
+               "o_state_or_province": st.sidebar.text_input("Organization State/Province", value="Organization State/Province"),
+               "o_full_address_of_company ": st.sidebar.text_input("Organization Full Address", value="Organization Full Address"),
                "description_of_work_to_be_performed": st.sidebar.text_input("Description of the work", value="Description of the work"),
                "name": st.sidebar.text_input("Name", value="Name"),
-               "amount": st.sidebar.text_input("Amount Owner need to pay", value="Amount Owner need to pay"),
-
+               "p_amount": st.sidebar.text_input("Amount Owner need to pay (in numbers)", value="Amount Owner need to pay"),
                "description_of_timing_and_mode_of_payment": st.sidebar.selectbox("Method of Payment: ", ("Debit Card", "Credit Card", "Cash")),
+               "dates": st.sidebar.date_input("Contractor need to complete the work on or before:"),
                "completion_date": st.sidebar.date_input("Work Completion Date:"),
                "i_amount": st.sidebar.text_input("Amount Contractor has to pay", value="Amount Contractor has to pay"),
                "day_or_week_or_month": st.sidebar.selectbox("Duration of the payment for the Damages: ", ("Days", "Weeks", "Months")),
